@@ -1,0 +1,13 @@
+body{
+
+    font-size: 30px;
+    color:rgba(223, 13, 129, 0.678);
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-flow: column;
+}

@@ -1,0 +1,24 @@
+{
+    "questions": [
+      {
+        "question": "Where does the President of the United States live while in office?",
+        "answers": ["New York", "The White House", "The Moon"],
+        "correct": 1
+      },
+      {
+        "question": "If you freeze water, what do you get?",
+        "answers": ["Ice", "Water", "Juice"],
+        "correct": 0
+      },
+      {
+        "question": "What do bees make?",
+        "answers": ["Hoeny", "Milk", "Apples"],
+        "correct": 0 
+      },
+      {
+        "question": "Which Disney movie is Elsa in?",
+        "answers": ["lion King", "Mickey Mouse", "Frozen"],
+        "correct": 2
+      }
+    ]
+  }

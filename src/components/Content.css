@@ -1,0 +1,17 @@
+header{
+    font-size: 35px;
+    font-family:serif;
+    color:rgb(230, 15, 129)
+}
+
+#question{
+    text-align: center;
+    font-size: 30px;
+    color:rgba(223, 13, 129, 0.678);
+}
+
+#progressBar {
+    text-align: center;
+    font-size: 20px;
+    color:rgba(182, 59, 127, 0.678);
+}
