@@ -9,9 +9,15 @@ const App: React.FC<{}> = ({}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questions, setQuestions] = useState(new Array<IQuestion>());
   const [numOfCorrectAnswer, setNumOfCorrectAnswer] = useState(0);
+  const [userAnswers, setUserAnswers] = useState(new Map<number,number>());
 
-  const nextQuestion = (answerChoosed: number) => {
-    if (questions[currentQuestion].correct === answerChoosed) {
+  const updateUserAnswers = (answer: number) => {
+    setUserAnswers(new Map(userAnswers.set(currentQuestion,answer)));
+    console.log(userAnswers)
+  }
+
+  const nextQuestion = () => {
+    if (questions[currentQuestion].correct === userAnswers.get(currentQuestion)) {
       setNumOfCorrectAnswer(numOfCorrectAnswer + 1);
     }
     setCurrentQuestion(currentQuestion + 1);
@@ -36,6 +42,7 @@ const App: React.FC<{}> = ({}) => {
           questionList={questions}
           currentQuestion={currentQuestion}
           nextQuestion={nextQuestion}
+          updateUserAnswers={updateUserAnswers}
         />
       );
     } else {

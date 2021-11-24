@@ -7,7 +7,8 @@ import './Content.css';
 interface IProps {
   questionList: IQuestion[];
   currentQuestion: number;
-  nextQuestion: (answerChoosed: number) => void;
+  nextQuestion: () => void;
+  updateUserAnswers: (answerChoosed: number) => void;
 }
 
 const Content: React.FC<IProps> = (props: IProps) => {
@@ -22,6 +23,7 @@ const Content: React.FC<IProps> = (props: IProps) => {
           questionList={props.questionList}
           currentQuestion={props.currentQuestion}
           nextQuestion={props.nextQuestion}
+          updateUserAnswers={props.updateUserAnswers}
         />
       </div>
 

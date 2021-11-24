@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PosibleAnswer.css';
 
 interface IProps {
   answer: string;
-  nextQuestion: (answerChoosed: number) => void;
   currentQuestion: number;
   answerIndex: number;
+  updateUserAnswers: (answerChoosed: number) => void;
 }
 
 const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
   const handleClick = () => {
-    props.nextQuestion(props.answerIndex);
+    props.updateUserAnswers(props.answerIndex);
   };
   return (
     <li>
-      <input type='radio' name='answer' onClick={handleClick} />
+      <input type='radio' name='answer' onClick={handleClick}/>
       <label onClick={handleClick}>{props.answer}</label>
     </li>
   );

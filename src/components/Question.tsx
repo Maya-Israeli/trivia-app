@@ -5,10 +5,12 @@ import PossibleAnswer from './PossibleAnswer';
 interface IProps {
   questionList: IQuestion[];
   currentQuestion: number;
-  nextQuestion: (answerChoosed: number) => void;
+  nextQuestion: () => void;
+  updateUserAnswers: (answerChoosed: number) => void;
 }
 const Question: React.FC<IProps> = (props: IProps) => {
   const answers = props.questionList[props.currentQuestion].answers;
+
   return (
     <div>
       <p>{props.questionList[props.currentQuestion].question}</p>
@@ -17,13 +19,13 @@ const Question: React.FC<IProps> = (props: IProps) => {
           <PossibleAnswer
             key={'question' + props.currentQuestion + 'answer' + index}
             answer={currAnswer}
-            nextQuestion={props.nextQuestion}
             currentQuestion={props.currentQuestion}
             answerIndex={index}
+            updateUserAnswers={props.updateUserAnswers}
           />
         ))}
       </ul>
-      <button>next</button>
+      <button onClick={() => props.nextQuestion()}>next</button>
     </div>
   );
 };
