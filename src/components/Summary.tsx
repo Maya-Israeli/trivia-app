@@ -1,33 +1,33 @@
 import React from 'react';
 import './Summary.css';
 
-
-interface IProps{
+interface IProps {
   numOfQuestions: number;
   numOfCorrectAnswer: number;
-  tryAgain: Function;
+  tryAgain: () => void;
 }
 
+const calculateGrade = (numOfCorrectAnswer: number, numOfQuestions: number) => {
+  return (numOfCorrectAnswer * 100) / numOfQuestions;
+};
+
 const Summary: React.FC<IProps> = (props: IProps) => {
-  const tryAgain = () => {
-    props.tryAgain();
-  }
-  
   return (
-    <div className="content">
+    <div className='content'>
       <div>
         <p>You did it!!!</p>
         <p>Number Of Correct answers: {props.numOfCorrectAnswer}</p>
-        <p>Grade: {props.numOfCorrectAnswer * 100 / props.numOfQuestions}</p>
+        <p>
+          Grade:{' '}
+          {calculateGrade(props.numOfCorrectAnswer, props.numOfQuestions)}
+        </p>
       </div>
 
       <div>
-        <button onClick={tryAgain}>
-					Try Again
-				</button>
+        <button onClick={() => props.tryAgain()}>Try Again</button>
       </div>
     </div>
   );
-}
+};
 
 export default Summary;

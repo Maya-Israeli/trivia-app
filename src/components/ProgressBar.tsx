@@ -1,16 +1,16 @@
 import React from 'react';
 
-interface IProps{
-    currentQuestion: number
-    totalQuestions: number
+interface IProps {
+  currentQuestion: number;
+  totalQuestions: number;
 }
 
-const ProgressBar: React.FC<IProps> = (props: IProps) => {
+const ProgressBar: React.FC<IProps> = ({ currentQuestion, totalQuestions }) => {
   return (
     <div>
-        question {props.currentQuestion+1}/{props.totalQuestions}
+      question {currentQuestion + 1}/{totalQuestions}
     </div>
   );
-}
+};
 
 export default ProgressBar;
