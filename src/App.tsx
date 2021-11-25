@@ -8,7 +8,6 @@ const App: React.FC = () => {
   const [loadJson, setLoadJson] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questions, setQuestions] = useState(new Array<IQuestion>());
-  const [numOfCorrectAnswer, setNumOfCorrectAnswer] = useState(0);
   const [userAnswers, setUserAnswers] = useState(new Map<number,number>());
 
   const updateUserAnswers = (answer: number) => {
@@ -17,11 +16,12 @@ const App: React.FC = () => {
   }
 
   const nextQuestion = () => {
-    if (questions[currentQuestion].correct === userAnswers.get(currentQuestion)) {
-      setNumOfCorrectAnswer(numOfCorrectAnswer + 1);
-    }
     setCurrentQuestion(currentQuestion + 1);
   };
+
+  const prevQuestion = () => {
+    setCurrentQuestion(currentQuestion - 1);
+  }
 
   useEffect(() => {
     fetch('questions.json')
@@ -32,7 +32,6 @@ const App: React.FC = () => {
 
   const tryAgain = () => {
     setCurrentQuestion(0);
-    setNumOfCorrectAnswer(0);
     setUserAnswers(new Map<number,number>());
   };
 
@@ -45,13 +44,14 @@ const App: React.FC = () => {
           nextQuestion={nextQuestion}
           updateUserAnswers={updateUserAnswers}
           userAnswers={userAnswers}
+          prevQuestion={prevQuestion}
         />
       );
     } else {
       return (
         <Summary
-          numOfQuestions={questions.length}
-          numOfCorrectAnswer={numOfCorrectAnswer}
+          questions={questions}
+          userAnswers={userAnswers}
           tryAgain={tryAgain}
         />
       );

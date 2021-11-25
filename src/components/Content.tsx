@@ -10,6 +10,7 @@ interface IProps {
   nextQuestion: () => void;
   updateUserAnswers: (answerChoosed: number) => void;
   userAnswers: Map<number, number>;
+  prevQuestion: () => void;
 }
 
 const Content: React.FC<IProps> = (props: IProps) => {
@@ -26,6 +27,7 @@ const Content: React.FC<IProps> = (props: IProps) => {
           nextQuestion={props.nextQuestion}
           updateUserAnswers={props.updateUserAnswers}
           userAnswers={props.userAnswers}
+          prevQuestion={props.prevQuestion}
         />
       </div>
 

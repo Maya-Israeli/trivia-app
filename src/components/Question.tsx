@@ -8,6 +8,7 @@ interface IProps {
   nextQuestion: () => void;
   updateUserAnswers: (answerChoosed: number) => void;
   userAnswers: Map<number, number>;
+  prevQuestion: () => void;
 }
 const Question: React.FC<IProps> = (props: IProps) => {
   const answers = props.questionList[props.currentQuestion].answers;
@@ -28,6 +29,7 @@ const Question: React.FC<IProps> = (props: IProps) => {
         ))}
       </ul>
       <button onClick={() => props.nextQuestion()}>next</button>
+      <button onClick={() => props.prevQuestion()} disabled={props.currentQuestion<1}>prev</button>
     </div>
   );
 };
