@@ -4,7 +4,7 @@ import Content from './components/Content';
 import Summary from './components/Summary';
 import { IQuestion } from './models/IQuestion';
 
-const App: React.FC<{}> = ({}) => {
+const App: React.FC = () => {
   const [loadJson, setLoadJson] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questions, setQuestions] = useState(new Array<IQuestion>());
@@ -43,6 +43,7 @@ const App: React.FC<{}> = ({}) => {
           currentQuestion={currentQuestion}
           nextQuestion={nextQuestion}
           updateUserAnswers={updateUserAnswers}
+          userAnswers={userAnswers}
         />
       );
     } else {

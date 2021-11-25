@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './PosibleAnswer.css';
 
 interface IProps {
@@ -6,16 +5,26 @@ interface IProps {
   currentQuestion: number;
   answerIndex: number;
   updateUserAnswers: (answerChoosed: number) => void;
+  userAnswers: Map<number, number>;
+
 }
 
 const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
-  const handleClick = () => {
+  const handleClick = (event: any) => {
+    console.log(event.target.value);
     props.updateUserAnswers(props.answerIndex);
   };
   return (
     <li>
-      <input type='radio' name='answer' onClick={handleClick}/>
-      <label onClick={handleClick}>{props.answer}</label>
+    <label>
+      <input
+        type='radio'
+        name='answer'
+        onChange={handleClick}
+        checked={props.userAnswers.get(props.currentQuestion)===props.answerIndex}
+      />
+        {props.answer} 
+      </label>
     </li>
   );
 };
