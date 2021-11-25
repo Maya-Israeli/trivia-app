@@ -33,6 +33,7 @@ const App: React.FC = () => {
   const tryAgain = () => {
     setCurrentQuestion(0);
     setNumOfCorrectAnswer(0);
+    setUserAnswers(new Map<number,number>());
   };
 
   const WhichPage: React.FC = () => {
