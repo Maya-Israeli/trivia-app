@@ -7,6 +7,7 @@ interface IProps {
   updateUserAnswers: (answerChoosed: number) => void;
   userAnswers: Map<number, number>;
   prevQuestion: () => void;
+
 }
 const Question: React.FC<IProps> = (props: IProps) => {
   const questions = useAppSelector((state) => state.questions.questions);

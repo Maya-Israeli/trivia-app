@@ -27,6 +27,10 @@ const App: React.FC = () => {
     dispatch(prev());
   };
 
+  const finishGame = () => {
+
+  }
+
   // useEffect(() => {
   //   fetch('questions.json')
   //     .then((response) => response.json())
@@ -47,6 +51,7 @@ const App: React.FC = () => {
           updateUserAnswers={updateUserAnswers}
           userAnswers={userAnswers}
           prevQuestion={prevQuestion}
+          finishGame={finishGame}
         />
       );
     } else {

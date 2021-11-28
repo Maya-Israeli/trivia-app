@@ -5,11 +5,13 @@ const About: React.FC<{}> = () => {
   return (
     <div>
       <div>
-        <p>This is about page</p>
+      <p>Welcome to my trivia game!</p>
+      <p>Click start game in order to start playing</p>
+
       </div>
 
       <div>
-        <Link to='questions'>Start Game</Link>
+        <Link to='/questions'>Start Game</Link>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ interface IProps {
   updateUserAnswers: (answerChoosed: number) => void;
   userAnswers: Map<number, number>;
   prevQuestion: () => void;
+  finishGame: () => void;
 }
 
 const Content: React.FC<IProps> = (props: IProps) => {
@@ -31,6 +32,7 @@ const Content: React.FC<IProps> = (props: IProps) => {
       <div className="progressBar">
         <ProgressBar
           totalQuestions={questions.length}
+          finishGame={props.finishGame}
         />
       </div>
     </div>

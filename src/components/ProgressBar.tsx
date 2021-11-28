@@ -3,15 +3,22 @@ import { useAppSelector } from '../store-Redux/hooks';
 
 interface IProps {
   totalQuestions: number;
+  finishGame: () => void;
 }
 
-const ProgressBar: React.FC<IProps> = ({ totalQuestions }) => {
+const ProgressBar: React.FC<IProps> = ({ totalQuestions, finishGame }) => {
   const currentQuestion = useAppSelector(
     (state) => state.questions.currentQuestion
   );
+
+  const handleFinish = () => {
+    finishGame();
+  }
+
   return (
     <div>
-      question {currentQuestion + 1}/{totalQuestions}
+      <button onClick={handleFinish}>finish</button>
+      <p>question {currentQuestion + 1}/{totalQuestions}</p>
     </div>
   );
 };
