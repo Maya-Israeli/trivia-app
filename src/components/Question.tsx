@@ -1,34 +1,37 @@
 import React from 'react';
-import { IQuestion } from '../models/IQuestion';
+import { useAppSelector } from '../store-Redux/hooks';
 import PossibleAnswer from './PossibleAnswer';
 
 interface IProps {
-  questionList: IQuestion[];
-  currentQuestion: number;
   nextQuestion: () => void;
   updateUserAnswers: (answerChoosed: number) => void;
   userAnswers: Map<number, number>;
   prevQuestion: () => void;
 }
 const Question: React.FC<IProps> = (props: IProps) => {
-  const answers = props.questionList[props.currentQuestion].answers;
+  const questions = useAppSelector((state) => state.questions.questions);
+  const currentQuestion = useAppSelector(
+    (state) => state.questions.currentQuestion
+  );
+
+  const answers = questions[currentQuestion].answers;
 
   return (
     <div>
-      <p>{props.questionList[props.currentQuestion].question}</p>
+      <p>{questions[currentQuestion].question}</p>
       <ul>
         {answers.map((currAnswer: string, index: number) => (
           <PossibleAnswer
-            key={'question' + props.currentQuestion + 'answer' + index}
+            key={'question' + currentQuestion + 'answer' + index}
             answer={currAnswer}
-            currentQuestion={props.currentQuestion}
+            currentQuestion={currentQuestion}
             answerIndex={index}
             updateUserAnswers={props.updateUserAnswers}
             userAnswers={props.userAnswers}
           />
         ))}
       </ul>
-      <button onClick={() => props.prevQuestion()} disabled={props.currentQuestion<1}>prev</button>
+      <button onClick={() => props.prevQuestion()} disabled={currentQuestion<1}>prev</button>
       <button onClick={() => props.nextQuestion()}>next</button>
     </div>
   );

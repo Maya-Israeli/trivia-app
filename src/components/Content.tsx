@@ -1,12 +1,10 @@
 import React from 'react';
-import { IQuestion } from '../models/IQuestion';
 import ProgressBar from './ProgressBar';
 import Question from './Question';
 import './Content.css';
+import { useAppSelector } from '../store-Redux/hooks';
 
 interface IProps {
-  questionList: IQuestion[];
-  currentQuestion: number;
   nextQuestion: () => void;
   updateUserAnswers: (answerChoosed: number) => void;
   userAnswers: Map<number, number>;
@@ -14,6 +12,7 @@ interface IProps {
 }
 
 const Content: React.FC<IProps> = (props: IProps) => {
+  const questions = useAppSelector((state) => state.questions.questions);
   return (
     <div>
       <header>
@@ -22,8 +21,6 @@ const Content: React.FC<IProps> = (props: IProps) => {
 
       <div className="question">
         <Question
-          questionList={props.questionList}
-          currentQuestion={props.currentQuestion}
           nextQuestion={props.nextQuestion}
           updateUserAnswers={props.updateUserAnswers}
           userAnswers={props.userAnswers}
@@ -33,8 +30,7 @@ const Content: React.FC<IProps> = (props: IProps) => {
 
       <div className="progressBar">
         <ProgressBar
-          currentQuestion={props.currentQuestion}
-          totalQuestions={props.questionList.length}
+          totalQuestions={questions.length}
         />
       </div>
     </div>

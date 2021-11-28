@@ -1,11 +1,14 @@
 import React from 'react';
+import { useAppSelector } from '../store-Redux/hooks';
 
 interface IProps {
-  currentQuestion: number;
   totalQuestions: number;
 }
 
-const ProgressBar: React.FC<IProps> = ({ currentQuestion, totalQuestions }) => {
+const ProgressBar: React.FC<IProps> = ({ totalQuestions }) => {
+  const currentQuestion = useAppSelector(
+    (state) => state.questions.currentQuestion
+  );
   return (
     <div>
       question {currentQuestion + 1}/{totalQuestions}
