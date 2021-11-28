@@ -17,7 +17,6 @@ const App: React.FC = () => {
 
   const updateUserAnswers = (answer: number) => {
     setUserAnswers(new Map(userAnswers.set(currentQuestion, answer)));
-    console.log(userAnswers);
   };
 
   const nextQuestion = () => {

@@ -24,7 +24,6 @@ const Question: React.FC<IProps> = (props: IProps) => {
           <PossibleAnswer
             key={'question' + currentQuestion + 'answer' + index}
             answer={currAnswer}
-            currentQuestion={currentQuestion}
             answerIndex={index}
             updateUserAnswers={props.updateUserAnswers}
             userAnswers={props.userAnswers}

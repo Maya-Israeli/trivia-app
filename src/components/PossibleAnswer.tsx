@@ -1,17 +1,17 @@
+import { useAppSelector } from '../store-Redux/hooks';
 import './PosibleAnswer.css';
 
 interface IProps {
   answer: string;
-  currentQuestion: number;
   answerIndex: number;
   updateUserAnswers: (answerChoosed: number) => void;
   userAnswers: Map<number, number>;
-
 }
 
 const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
+  const currentQuestion = useAppSelector((state) => state.questions.currentQuestion);
+
   const handleClick = (event: any) => {
-    console.log(event.target.value);
     props.updateUserAnswers(props.answerIndex);
   };
   return (
@@ -21,7 +21,7 @@ const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
         type='radio'
         name='answer'
         onChange={handleClick}
-        checked={props.userAnswers.get(props.currentQuestion)===props.answerIndex}
+        checked={props.userAnswers.get(currentQuestion)===props.answerIndex}
       />
         {props.answer} 
       </label>
