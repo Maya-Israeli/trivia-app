@@ -5,7 +5,6 @@ import PossibleAnswer from './PossibleAnswer';
 interface IProps {
   nextQuestion: () => void;
   updateUserAnswers: (answerChoosed: number) => void;
-  userAnswers: Map<number, number>;
   prevQuestion: () => void;
 
 }
@@ -27,7 +26,6 @@ const Question: React.FC<IProps> = (props: IProps) => {
             answer={currAnswer}
             answerIndex={index}
             updateUserAnswers={props.updateUserAnswers}
-            userAnswers={props.userAnswers}
           />
         ))}
       </ul>

@@ -3,7 +3,7 @@ import { useAppSelector } from '../store-Redux/hooks';
 import './Summary.css';
 
 interface IProps {
-  userAnswers: Map<number, number>;
+  // userAnswers: Map<number, number>;
   tryAgain: () => void;
 }
 
@@ -12,11 +12,12 @@ const calculateGrade = (numOfCorrectAnswer: number, numOfQuestions: number) => {
 };
 
 const Summary: React.FC<IProps> = (props: IProps) => {
+  const userAnswers = useAppSelector((state) => state.questions.userAnswers);
   const questions = useAppSelector((state) => state.questions.questions);
   const numOfCorrectAnswers = () => {
     let correct = 0;
     correct = questions.filter((question, index) => 
-      question.correct === props.userAnswers.get(index)
+      question.correct === userAnswers[index]
     ).length;
     return correct;
   };

@@ -8,14 +8,18 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import store from './store-Redux/store'
 import { Provider } from 'react-redux'
 import NavBar from './components/NavBar';
+import { enableMapSet } from 'immer'
 
+enableMapSet();
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
     <BrowserRouter>
       <NavBar/>
       <Routes>
-        <Route path='questions' element={<App />} />
+        <Route path='questions' element={<App />} >
+          <Route path=":currentQuestion" element={<App />} />
+        </Route>
         <Route path='about' element={<About />} />
         <Route path='/' element={<Navigate to="questions" />} />
       </Routes>

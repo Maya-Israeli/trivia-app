@@ -5,11 +5,12 @@ interface IProps {
   answer: string;
   answerIndex: number;
   updateUserAnswers: (answerChoosed: number) => void;
-  userAnswers: Map<number, number>;
 }
 
 const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
   const currentQuestion = useAppSelector((state) => state.questions.currentQuestion);
+  const userAnswers = useAppSelector((state) => state.questions.userAnswers);
+
 
   const handleClick = (event: any) => {
     props.updateUserAnswers(props.answerIndex);
@@ -21,7 +22,7 @@ const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
         type='radio'
         name='answer'
         onChange={handleClick}
-        checked={props.userAnswers.get(currentQuestion)===props.answerIndex}
+        checked={userAnswers[currentQuestion]===props.answerIndex}
       />
         {props.answer} 
       </label>

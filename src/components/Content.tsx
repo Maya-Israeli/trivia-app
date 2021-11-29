@@ -3,11 +3,12 @@ import ProgressBar from './ProgressBar';
 import Question from './Question';
 import './Content.css';
 import { useAppSelector } from '../store-Redux/hooks';
+import { NavLink } from 'react-router-dom';
 
 interface IProps {
   nextQuestion: () => void;
   updateUserAnswers: (answerChoosed: number) => void;
-  userAnswers: Map<number, number>;
+  // userAnswers: Map<number, number>;
   prevQuestion: () => void;
   finishGame: () => void;
 }
@@ -20,11 +21,23 @@ const Content: React.FC<IProps> = (props: IProps) => {
         <h1>My Trivia App</h1>
       </header>
 
+      <nav className="navQuestions">
+        {questions.map((question, index) => (
+          <NavLink
+            className="navLink"
+            to={`/questions/${index+1}`}
+            key={index}
+          >
+            {"Q"+(index+1)}
+          </NavLink>
+        ))}
+      </nav>
+
       <div className="question">
         <Question
           nextQuestion={props.nextQuestion}
           updateUserAnswers={props.updateUserAnswers}
-          userAnswers={props.userAnswers}
+          // userAnswers={props.userAnswers}
           prevQuestion={props.prevQuestion}
         />
       </div>
