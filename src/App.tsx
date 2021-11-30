@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useParams } from 'react-router-dom';
 import './App.css';
 import Content from './components/Content';
 import { useAppDispatch, useAppSelector } from './store-Redux/hooks';
@@ -7,12 +8,24 @@ import { next, prev, setUserAnswers } from './store-Redux/questionsSlice';
 
 const App: React.FC = () => {
   const [loadJson] = useState(true);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const currentQuestion = useAppSelector(
-    (state) => state.questions.currentQuestion
-  );
-  const dispatch = useAppDispatch();
+  // const currentQuestion = useAppSelector(
+  //   (state) => state.questions.currentQuestion
+  // );
+
+  const params = useParams();
+  console.log(params.currentQuestion);
+  const currentQuestion: number = params.currentQuestion
+    ? parseInt(params.currentQuestion)
+    : 1;
+
+  if (!currentQuestion){
+    return <p>item not found!</p>
+  }
+
+   console.log('current question is: ',currentQuestion);
 
   const updateUserAnswers = (answer: number) => {
     dispatch(setUserAnswers(answer));
@@ -20,12 +33,12 @@ const App: React.FC = () => {
 
   const nextQuestion = () => {
     dispatch(next());
-    navigate(`./${currentQuestion+2}`);
+    navigate(`../questions/${currentQuestion+1}`);
   };
 
   const prevQuestion = () => {
     dispatch(prev());
-    navigate(`./${currentQuestion}`);
+    navigate(`../questions/${currentQuestion-1}`);
   };
 
   const finishGame = () => {

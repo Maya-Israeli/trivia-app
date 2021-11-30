@@ -10,13 +10,14 @@ interface IProps {
 }
 const Question: React.FC<IProps> = (props: IProps) => {
   const questions = useAppSelector((state) => state.questions.questions);
+  
   const params = useParams();
   const current: number = params.currentQuestion
     ? parseInt(params.currentQuestion)
     : 1;
   const questionObj = questions[current - 1];
 
-  if (current > questions.length || !questionObj){
+  if (current > questions.length){
     return <p>question not found!</p>
   }
 

@@ -24,7 +24,7 @@ const Summary: React.FC = () => {
   };
 
   const tryAgain = () => {
-    navigate("../questions");
+    navigate("../questions/1");
     dispatch(fromBegining());
   };
 
