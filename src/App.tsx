@@ -4,16 +4,12 @@ import { useParams } from 'react-router-dom';
 import './App.css';
 import Content from './components/Content';
 import { useAppDispatch, useAppSelector } from './store-Redux/hooks';
-import { next, prev, setUserAnswers } from './store-Redux/questionsSlice';
+import { Answer, setUserAnswers } from './store-Redux/questionsSlice';
 
 const App: React.FC = () => {
   const [loadJson] = useState(true);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  // const currentQuestion = useAppSelector(
-  //   (state) => state.questions.currentQuestion
-  // );
 
   const params = useParams();
   console.log(params.currentQuestion);
@@ -28,16 +24,15 @@ const App: React.FC = () => {
    console.log('current question is: ',currentQuestion);
 
   const updateUserAnswers = (answer: number) => {
-    dispatch(setUserAnswers(answer));
+    const ans:Answer = {answer: answer, currentQuestion: currentQuestion-1}
+    dispatch(setUserAnswers(ans));
   };
 
   const nextQuestion = () => {
-    dispatch(next());
     navigate(`../questions/${currentQuestion+1}`);
   };
 
   const prevQuestion = () => {
-    dispatch(prev());
     navigate(`../questions/${currentQuestion-1}`);
   };
 
