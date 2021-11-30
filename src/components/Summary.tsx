@@ -1,25 +1,31 @@
 import React from 'react';
-import { useAppSelector } from '../store-Redux/hooks';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store-Redux/hooks';
+import { fromBegining } from '../store-Redux/questionsSlice';
 import './Summary.css';
 
-interface IProps {
-  // userAnswers: Map<number, number>;
-  tryAgain: () => void;
-}
 
 const calculateGrade = (numOfCorrectAnswer: number, numOfQuestions: number) => {
   return (numOfCorrectAnswer * 100) / numOfQuestions;
 };
 
-const Summary: React.FC<IProps> = (props: IProps) => {
+const Summary: React.FC = () => {
   const userAnswers = useAppSelector((state) => state.questions.userAnswers);
   const questions = useAppSelector((state) => state.questions.questions);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const numOfCorrectAnswers = () => {
     let correct = 0;
     correct = questions.filter((question, index) => 
       question.correct === userAnswers[index]
     ).length;
     return correct;
+  };
+
+  const tryAgain = () => {
+    navigate("../questions");
+    dispatch(fromBegining());
   };
 
   return (
@@ -34,10 +40,12 @@ const Summary: React.FC<IProps> = (props: IProps) => {
       </div>
 
       <div>
-        <button onClick={() => props.tryAgain()}>Try Again</button>
+        <button onClick={() => tryAgain()}>Try Again</button>
       </div>
     </div>
   );
 };
 
 export default Summary;
+
+

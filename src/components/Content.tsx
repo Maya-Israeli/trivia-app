@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 interface IProps {
   nextQuestion: () => void;
   updateUserAnswers: (answerChoosed: number) => void;
-  // userAnswers: Map<number, number>;
   prevQuestion: () => void;
   finishGame: () => void;
 }
@@ -37,7 +36,6 @@ const Content: React.FC<IProps> = (props: IProps) => {
         <Question
           nextQuestion={props.nextQuestion}
           updateUserAnswers={props.updateUserAnswers}
-          // userAnswers={props.userAnswers}
           prevQuestion={props.prevQuestion}
         />
       </div>

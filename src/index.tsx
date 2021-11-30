@@ -9,6 +9,7 @@ import store from './store-Redux/store'
 import { Provider } from 'react-redux'
 import NavBar from './components/NavBar';
 import { enableMapSet } from 'immer'
+import Summary from './components/Summary';
 
 enableMapSet();
 ReactDOM.render(
@@ -21,7 +22,9 @@ ReactDOM.render(
           <Route path=":currentQuestion" element={<App />} />
         </Route>
         <Route path='about' element={<About />} />
-        <Route path='/' element={<Navigate to="questions" />} />
+        <Route path='/' element={<Navigate to="questions/1" />} />
+        <Route path='questions' element={<Navigate to="questions/1" />} />
+        <Route path='summary' element={<Summary />} />
       </Routes>
     </BrowserRouter>
     </Provider>

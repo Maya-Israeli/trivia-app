@@ -37,6 +37,7 @@ export const questionsSlice = createSlice({
       state.currentQuestion -= 1;
     },
     fromBegining: (state) => {
+      state.userAnswers = new Array<number>(4);
       state.currentQuestion = 0;
     },
     setUserAnswers: (state, action: PayloadAction<number>) => {

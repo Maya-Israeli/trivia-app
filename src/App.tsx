@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import './App.css';
 import Content from './components/Content';
-import Summary from './components/Summary';
 import { useAppDispatch, useAppSelector } from './store-Redux/hooks';
-import { next, prev, fromBegining, setUserAnswers } from './store-Redux/questionsSlice';
+import { next, prev, setUserAnswers } from './store-Redux/questionsSlice';
 
 const App: React.FC = () => {
   const [loadJson] = useState(true);
+  const navigate = useNavigate();
 
-  const questions = useAppSelector((state) => state.questions.questions);
   const currentQuestion = useAppSelector(
     (state) => state.questions.currentQuestion
   );
@@ -20,14 +20,16 @@ const App: React.FC = () => {
 
   const nextQuestion = () => {
     dispatch(next());
+    navigate(`./${currentQuestion+2}`);
   };
 
   const prevQuestion = () => {
     dispatch(prev());
+    navigate(`./${currentQuestion}`);
   };
 
   const finishGame = () => {
-
+    navigate("../../Summary");
   }
 
   // useEffect(() => {
@@ -37,32 +39,14 @@ const App: React.FC = () => {
   //   setLoadJson(true);
   // }, []);
 
-  const tryAgain = () => {
-    dispatch(fromBegining());
-  };
-
-  const WhichPage: React.FC = () => {
-    if (currentQuestion < questions.length) {
-      return (
+  return loadJson ? (
+    <div className='App'>
         <Content
           nextQuestion={nextQuestion}
           updateUserAnswers={updateUserAnswers}
           prevQuestion={prevQuestion}
           finishGame={finishGame}
         />
-      );
-    } else {
-      return (
-        <Summary
-          tryAgain={tryAgain}
-        />
-      );
-    }
-  };
-
-  return loadJson ? (
-    <div className='App'>
-      <WhichPage />
     </div>
   ) : (
     <p> LOADING.... </p>
