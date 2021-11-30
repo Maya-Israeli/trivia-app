@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import './App.css';
 import Content from './components/Content';
-import { useAppDispatch, useAppSelector } from './store-Redux/hooks';
+import { useAppDispatch } from './store-Redux/hooks';
 import { Answer, setUserAnswers } from './store-Redux/questionsSlice';
 
 const App: React.FC = () => {

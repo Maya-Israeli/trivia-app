@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useAppSelector, useTriviaCollection } from '../store-Redux/hooks';
+import { useTriviaCollection } from '../store-Redux/hooks';
 import './PosibleAnswer.css';
 
 interface IProps {

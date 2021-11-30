@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 import Question from './Question';
 import './Content.css';
-import { useAppSelector, useTriviaCollection } from '../store-Redux/hooks';
+import { useTriviaCollection } from '../store-Redux/hooks';
 import { NavLink } from 'react-router-dom';
 
 interface IProps {
