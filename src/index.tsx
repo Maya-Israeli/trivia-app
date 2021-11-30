@@ -18,12 +18,9 @@ ReactDOM.render(
     <BrowserRouter>
       <NavBar/>
       <Routes>
-        <Route path='questions' element={<App />} >
-          <Route path=":currentQuestion" element={<App />} />
-        </Route>
+        <Route path='questions/:currentQuestion' element={<App />} />
         <Route path='about' element={<About />} />
-        <Route path='/' element={<Navigate to="questions/1" />} />
-        <Route path='questions' element={<Navigate to="questions/1" />} />
+        <Route path='*' element={<Navigate to="questions/1" />} />
         <Route path='summary' element={<Summary />} />
       </Routes>
     </BrowserRouter>

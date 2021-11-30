@@ -16,6 +16,10 @@ const Question: React.FC<IProps> = (props: IProps) => {
     : 1;
   const questionObj = questions[current - 1];
 
+  if (current > questions.length || !questionObj){
+    return <p>question not found!</p>
+  }
+
   return (
     <div>
       <p>{questionObj.question}</p>
