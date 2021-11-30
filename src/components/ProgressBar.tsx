@@ -1,14 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../store-Redux/hooks';
+import { useTriviaCollection } from '../store-Redux/hooks';
 
 interface IProps {
-  totalQuestions: number;
   finishGame: () => void;
 }
 
-const ProgressBar: React.FC<IProps> = ({ totalQuestions, finishGame }) => {
+const ProgressBar: React.FC<IProps> = ({ finishGame }) => {
   const params = useParams();
+  const {questions} = useTriviaCollection();
   const currentQuestion: number = params.currentQuestion
     ? parseInt(params.currentQuestion)
     : 1;
@@ -24,7 +24,7 @@ const ProgressBar: React.FC<IProps> = ({ totalQuestions, finishGame }) => {
   return (
     <div>
       <button onClick={handleFinish}>finish</button>
-      <p>question {currentQuestion + 1}/{totalQuestions}</p>
+      <p>question {currentQuestion + 1}/{questions.length}</p>
     </div>
   );
 };

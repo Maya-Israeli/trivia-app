@@ -17,28 +17,29 @@ const App: React.FC = () => {
     ? parseInt(params.currentQuestion)
     : 1;
 
-  if (!currentQuestion){
-    return <p>item not found!</p>
+  if (!currentQuestion) {
+    return <p>item not found!</p>;
   }
 
-   console.log('current question is: ',currentQuestion);
-
   const updateUserAnswers = (answer: number) => {
-    const ans:Answer = {answer: answer, currentQuestion: currentQuestion-1}
+    const ans: Answer = {
+      answer: answer,
+      currentQuestion: currentQuestion - 1,
+    };
     dispatch(setUserAnswers(ans));
   };
 
   const nextQuestion = () => {
-    navigate(`../questions/${currentQuestion+1}`);
+    navigate(`../questions/${currentQuestion + 1}`);
   };
 
   const prevQuestion = () => {
-    navigate(`../questions/${currentQuestion-1}`);
+    navigate(`../questions/${currentQuestion - 1}`);
   };
 
   const finishGame = () => {
-    navigate("../../Summary");
-  }
+    navigate('../../Summary');
+  };
 
   // useEffect(() => {
   //   fetch('questions.json')
@@ -49,12 +50,12 @@ const App: React.FC = () => {
 
   return loadJson ? (
     <div className='App'>
-        <Content
-          nextQuestion={nextQuestion}
-          updateUserAnswers={updateUserAnswers}
-          prevQuestion={prevQuestion}
-          finishGame={finishGame}
-        />
+      <Content
+        nextQuestion={nextQuestion}
+        updateUserAnswers={updateUserAnswers}
+        prevQuestion={prevQuestion}
+        finishGame={finishGame}
+      />
     </div>
   ) : (
     <p> LOADING.... </p>

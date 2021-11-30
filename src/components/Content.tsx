@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 import Question from './Question';
 import './Content.css';
-import { useAppSelector } from '../store-Redux/hooks';
+import { useAppSelector, useTriviaCollection } from '../store-Redux/hooks';
 import { NavLink } from 'react-router-dom';
 
 interface IProps {
@@ -13,14 +13,15 @@ interface IProps {
 }
 
 const Content: React.FC<IProps> = (props: IProps) => {
-  const questions = useAppSelector((state) => state.questions.questions);
+
+  const {questions} = useTriviaCollection();
   return (
     <div>
       <header>
         <h1>My Trivia App</h1>
       </header>
 
-      <nav className="navQuestions">
+      <nav>
         {questions.map((question, index) => (
           <NavLink
             className="navLink"
@@ -42,7 +43,6 @@ const Content: React.FC<IProps> = (props: IProps) => {
 
       <div className="progressBar">
         <ProgressBar
-          totalQuestions={questions.length}
           finishGame={props.finishGame}
         />
       </div>
