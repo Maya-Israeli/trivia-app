@@ -6,7 +6,7 @@ import './NavBar.css';
 const NavBar: React.FC = () => {
 	return (
 		<nav className="nav">
-			<NavLink to="/questions">
+			<NavLink to="/questions/1">
 				Home
 			</NavLink>
 			{' '}|{' '}

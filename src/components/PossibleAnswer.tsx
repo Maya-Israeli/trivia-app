@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../store-Redux/hooks';
 import './PosibleAnswer.css';
 
@@ -8,11 +9,19 @@ interface IProps {
 }
 
 const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
-  const currentQuestion = useAppSelector((state) => state.questions.currentQuestion);
+  // const currentQuestion = useAppSelector((state) => state.questions.currentQuestion);
   const userAnswers = useAppSelector((state) => state.questions.userAnswers);
+  const params = useParams();
+  const currentQuestion: number = params.currentQuestion
+    ? parseInt(params.currentQuestion)
+    : 1;
+
+  if (!currentQuestion){
+    return <p>item not found!</p>
+  }
 
 
-  const handleClick = (event: any) => {
+  const handleClick = () => {
     props.updateUserAnswers(props.answerIndex);
   };
   return (
@@ -22,7 +31,7 @@ const PossibleAnswer: React.FC<IProps> = (props: IProps) => {
         type='radio'
         name='answer'
         onChange={handleClick}
-        checked={userAnswers[currentQuestion]===props.answerIndex}
+        checked={userAnswers[currentQuestion-1]===props.answerIndex}
       />
         {props.answer} 
       </label>

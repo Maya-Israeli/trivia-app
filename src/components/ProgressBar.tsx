@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../store-Redux/hooks';
 
 interface IProps {
@@ -7,9 +8,14 @@ interface IProps {
 }
 
 const ProgressBar: React.FC<IProps> = ({ totalQuestions, finishGame }) => {
-  const currentQuestion = useAppSelector(
-    (state) => state.questions.currentQuestion
-  );
+  const params = useParams();
+  const currentQuestion: number = params.currentQuestion
+    ? parseInt(params.currentQuestion)
+    : 1;
+
+  if (!currentQuestion){
+    return <p>item not found!</p>
+  }
 
   const handleFinish = () => {
     finishGame();

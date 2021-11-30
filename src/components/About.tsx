@@ -13,7 +13,7 @@ const About: React.FC<{}> = () => {
       </div>
 
       <div>
-        <Link to='/questions'>Start Game</Link>
+        <Link to='/questions/1'>Start Game</Link>
       </div>
     </div>
   );

@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+export interface Answer{ 
+    answer: number, 
+    currentQuestion:number
+}
 export const questionsSlice = createSlice({
   name: 'question',
   initialState: {
@@ -26,28 +29,27 @@ export const questionsSlice = createSlice({
         correct: 2,
       },
     ],
-    currentQuestion: 0,
+    //currentQuestion: 0,
     userAnswers: new Array<number>(4),
   },
   reducers: {
-    next: (state) => {
-      state.currentQuestion += 1;
-    },
-    prev: (state) => {
-      state.currentQuestion -= 1;
-    },
+    // next: (state) => {
+    //   state.currentQuestion += 1;
+    // },
+    // prev: (state) => {
+    //   state.currentQuestion -= 1;
+    // },
     fromBegining: (state) => {
       state.userAnswers = new Array<number>(4);
-      state.currentQuestion = 0;
     },
-    setUserAnswers: (state, action: PayloadAction<number>) => {
-      state.userAnswers[state.currentQuestion] = action.payload
+    setUserAnswers: (state, action: PayloadAction<Answer>) => {
+      state.userAnswers[action.payload.currentQuestion] = action.payload.answer;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { next, prev, fromBegining, setUserAnswers } =
+export const { fromBegining, setUserAnswers } =
   questionsSlice.actions;
 
 export default questionsSlice.reducer;
